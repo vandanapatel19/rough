@@ -33,13 +33,14 @@ export default function TextForm(props) {
    <>
     <div className = "container" style={{color: props.mode==='dark'?'white':'#042743'}}>
 
-      <h1>{props.heading}</h1>``
-       <div className=" container my-3">
-         <textarea className="form-control" value = {text} onChange={handleOnChange}  style={{backgroundColor: props.mode==='dark'?'grey':'white' , color: props.mode==='dark'?'white':'black'}} id="exampleFormControlTextarea1" rows="10"></textarea>
+      <h1>{props.heading}</h1>
+       <div className = "container my-3">
+         <textarea className="form-control " value = {text} onChange={handleOnChange} 
+          style={{backgroundColor: props.mode==='dark'?'#07365aff':'white' , color: props.mode==='dark'?'white':'#042743'}} id="exampleFormControlTextarea1"  rows="10"></textarea>
        </div>
-      <button className="btn-primary mx-2" onClick={handleUpclick}>Convert to Uppercase</button>
-      <button className="btn-primary mx-2" onClick={handlelowclick}>Convert to Lowercase</button>
-      <button className="btn-primary mx-2" onClick={handleClearclick}>Clear text</button>
+      <button disabled={text.length === 0} className="btn-primary mx-2 " onClick={handleUpclick}>Convert to Uppercase</button>
+      <button  disabled={text.length === 0} className="btn-primary mx-2" onClick={handlelowclick}>Convert to Lowercase</button>
+      <button  disabled={text.length === 0} className="btn-primary mx-2" onClick={handleClearclick}>Clear text</button>
 
 
     </div>
@@ -47,10 +48,10 @@ export default function TextForm(props) {
     <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
 
       <h1>Your Text Summary</h1>
-      <p> {text.split(" ").length} Words and {text.length} Characters</p>
-      <p> {0.008*text.split(" ").length}  Minutes to read </p>
+      <p> {text.split(" ").filter((element)=>{ return element.length !== 0 }).length} Words and {text.length} Characters</p>
+      <p> {0.008*text.split(" ").filter((element)=>{ return element.length !== 0 }).length}  Minutes to read </p>
       <h2>Preview</h2>
-      <p>{text.length>0?text:"Enter something to preview"}</p>
+      <p>{text.length>0?text:"Nothing to preview"}</p>
     </div>
    </>
    
